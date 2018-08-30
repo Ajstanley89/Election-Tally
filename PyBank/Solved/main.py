@@ -60,7 +60,7 @@ def average(monthlyProfitChanges):
 
     average = totalChange/countChange
 
-    return int(average)
+    return float(average)
 
 # find average change in profits
 averageProfitChange = average(monthlyProfitChanges)
@@ -79,11 +79,23 @@ minIndex = monthlyProfitChanges.index(minProfitChange)
 #find date of min
 minChangeDate = months[minIndex]
 
+# can try zipping dates and profit change together
+    # date_change = list(zip(months, monthlyProfitChanges))
+
+    # print(f"{date_change[minIndex]}")
+
 # print results header
-print(f"Financial Analysis ----------------------------")
+print(f"Financial Analysis" )
+print(f"----------------------------")
 
 # print results
-print(f"Total Months: {str(monthCount)} Total: ${netProfit} Average Change: ${averageProfitChange} Greatest Increase in Profits: {maxChangeDate} ${maxProfitChange} Greatest Loss: {minChangeDate} ${minProfitChange}")
+print(f"Total Months: {str(monthCount)}") 
+print("Total: $", format(netProfit,",.2f"))
+print("Average Change: $", format(averageProfitChange,",.2f")) 
+print("Greatest Increase in Profits: ", maxChangeDate, " ($", format(maxProfitChange, ",.2f"),")")
+print("Greatest Decrease in Profits: ", minChangeDate, " ($", format(minProfitChange, ",.2f"),")")
+
+# write to csv file
 
 
 
