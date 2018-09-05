@@ -84,18 +84,27 @@ minChangeDate = months[minIndex]
 
     # print(f"{date_change[minIndex]}")
 
+# specify output path
+output_path = os.path.join("output", "py_bankresults.txt")
+
+results_file = open(output_path, 'w')
+
+def print_file(text):
+    print(f"{text}")
+    print(f"{text}", file=results_file)
+    return
+
 # print results header
-print(f"Financial Analysis" )
-print(f"----------------------------")
+print_file("Financial Analysis")
+print_file("----------------------------")
 
 # print results
-print(f"Total Months: {str(monthCount)}") 
-print("Total: $", format(netProfit,",.2f"))
-print("Average Change: $", format(averageProfitChange,",.2f")) 
-print("Greatest Increase in Profits: ", maxChangeDate, " ($", format(maxProfitChange, ",.2f"),")")
-print("Greatest Decrease in Profits: ", minChangeDate, " ($", format(minProfitChange, ",.2f"),")")
+print_file("Total Months: " + str(monthCount)) 
+print_file("Total: $" + str(format(netProfit,",.2f")))
+print_file("Average Change: $" + str(format(averageProfitChange,",.2f")))
+print_file("Greatest Increase in Profits: " + str(maxChangeDate) + " ($" +  str(format(maxProfitChange,",.2f"))+")")
+print_file("Greatest Decrease in Profits: " + str(minChangeDate) + " ($" + str(format(minProfitChange, ",.2f"))+")")
 
-# write to csv file
 
 
 

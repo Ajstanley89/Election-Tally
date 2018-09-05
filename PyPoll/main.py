@@ -32,7 +32,7 @@ candidates = []
 # define unique candidate list
 unique_candidates = []
 
-# define the edashes tha tseparate everything in the heeader
+# define the dashes that separate everything in the heeader
 separator = "-------------------------"
 
 #open csv file
@@ -69,31 +69,46 @@ all_votes = {"Khan":khan_count, "Correy":correy_count, "Li":li_count, "O'Tooley"
 # find the maximum of votes from the dictoary and return the key of that value (the winner)
 winner = max(all_votes, key=all_votes.get)
 
-# define function to calculate the percentage of votes each candidate received and print it out
+# specify output path
+output_path = os.path.join("output", "results.txt")
+
+results_file = open(output_path, 'w')
+
+# define function to calculate the percentage of votes each candidate received, print it out, and write to file
 def percentage(candidate, candidate_vote_dictionary, total):
-    votes = candidate_vote_dictionary.get(str(candidate), "")
+    votes = candidate_vote_dictionary.get(candidate, "")
     vote_percent = 100*(int(votes)/total)
     print(f"{candidate}: {vote_percent:.2f}% ({candidate_vote_dictionary[candidate]})")
+    print(f"{candidate}: {vote_percent:.2f}% ({candidate_vote_dictionary[candidate]})", file=results_file)
+    # results_file.write(f"{candidate}: {vote_percent:.2f}% ({candidate_vote_dictionary[candidate]})")
+    return
+
+def print_file(text):
+    print(f"{text}")
+    print(f"{text}", file=results_file)
     return
 
 # print header
-print(f"Election Results")
-print(separator)
+print_file("Election Results")
+print_file(separator)
 # print total votes
-print(f"Total Votes: {total_votes}")
-print(separator)
+print_file("Total Votes: " + str(total_votes))
+print_file(separator)
 
 # print individual results using defined function
 for unique_candidate in unique_candidates:
     percentage(unique_candidate, all_votes, total_votes)
 
-print(separator)
+print_file(separator)
 
 # Print winner, and make Star Trek joke if Khan wins
 if winner == "Khan":
-    print(f"The winner is: Khhhhhhhaaaaaaaaaaaaaannnnnnnnn!!!!!!!")
+    print_file("The winner is: Khhhhhhhaaaaaaaaaaaaaannnnnnnnn!!!!!!!")
 else:
-    print(f"The winner is: {winner}")
+    print_file("The winner is: " + str(winner))
+
+
+   
 
 
 
