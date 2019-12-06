@@ -1,2 +1,2 @@
-# python-challenge
-HW 3 for Berkeley Data Analytics
+# Tally election results
+Simple program to tally the results of an election and print the winner.
